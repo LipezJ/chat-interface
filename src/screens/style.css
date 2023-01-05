@@ -8,3 +8,6 @@
     height: 100vh;
     background-color: #e2daeb;
 }
+main {
+    display: flex;
+}
