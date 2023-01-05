@@ -4,13 +4,12 @@ button {
     background-color: #4c346b;
     color: #ffffff;
     padding: 5px;
-    margin-top: 10px;
 }
 button:active {
     background-color: #241933;
 }
 .inputc {
-    width: 60%;
+    width: 70%;
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -18,7 +17,6 @@ button:active {
 }
 input {
     height: 1.5rem;
-    width: 100%;
     outline: none;
     border: none;
     border-radius: 5px;
@@ -48,4 +46,82 @@ input {
 }
 .switch:active {
     color: #aaaaaa;
+}
+#chat {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+#chatc{
+    width: 25vw;
+    display: flex;
+    flex-direction: column;
+}
+#postc{
+    width: 75vw;
+    display: flex;
+    flex-direction: column;
+}
+#ownerc {
+    height: 10vh;
+    background-color: #301e4e;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: x-large;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 40px;
+}
+#createjoin {
+    height: 90vh;
+    width: 25vw;
+    background-color: #301e4e;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 10vh;
+}
+#buttonc {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+#postc {
+    width: 75vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+#someone {
+    height: 10vh;
+    background-color: #301e4e;
+    color: #ffffff;
+    font-size: large;
+    display: flex;
+    padding: 0px 50px;
+    align-items: center;
+}
+#posts {
+    height: 80vh;
+    background-color: #f4effc;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+#text{
+    height: 10vh;
+    background-color: #67568c;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }

@@ -1,16 +1,19 @@
-import React from 'react';
-import { useState } from 'react';
-import './styles/form.css'
+import React, { createContext, useState } from 'react';
+import './style.css'
 
 import Form from '../components/Form';
+
+export const TypeContext = createContext()
 
 function FormScreen(props) {
   const [type, setType] = useState('Login')
   return (
+      <TypeContext.Provider value={{type, setType}}>
         <main>
           <div id='banner'></div>
-          <Form type={type} setType={setType}/>
+          <Form/>
         </main>
+      </TypeContext.Provider>
   );
 }
 
