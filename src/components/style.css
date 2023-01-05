@@ -1,0 +1,51 @@
+button {
+    border: none;
+    border-radius: 5px;
+    background-color: #4c346b;
+    color: #ffffff;
+    padding: 5px;
+    margin-top: 10px;
+}
+button:active {
+    background-color: #241933;
+}
+.inputc {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: #ffffff;
+}
+input {
+    height: 1.5rem;
+    width: 100%;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+.title {
+    color: #ffffff;
+    font-size: x-large;
+    font-weight: 500;
+}
+.loginf {
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    background-color: #301e4e;  
+}
+.switch {
+    background-color: #ffffff00;
+}
+.switch:hover {
+    background-color: #ffffff00;
+    font-weight: 500;
+}
+.switch:active {
+    color: #aaaaaa;
+}
