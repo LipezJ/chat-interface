@@ -138,3 +138,10 @@ input {
 .owner {
     font-weight: 500;
 }
+#chatalert {
+    width: 75vw;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

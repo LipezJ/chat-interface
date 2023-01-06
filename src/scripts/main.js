@@ -23,11 +23,15 @@ function join(e, user){
 }
 function send(e, user){
     let post = document.querySelector('#post').value
+    document.querySelector('#post').value = ''
     setPosts_(user, post)
 }
 function ePost(funcPost, funcSomeone) {
     setPosts_ = funcPost
     setSomeone_ = funcSomeone
 }
+function enterKey(e, user) {
+    if (e.key === 'Enter') send(e, user)
+}
 
-export {login, logout, create, join, send, ePost}
+export {login, logout, create, join, send, ePost, enterKey}
