@@ -5,7 +5,7 @@ import Input from './Input';
 import Button from './Button';
 import Post from './Post';
 import ChatAlert from './ChatAlert'
-import { send, ePost } from '../scripts/main'
+import { sendReq, ePost } from '../scripts/main'
 
 function PostContainer(props) {
     const [posts, setPosts] = useState([''])
@@ -30,8 +30,8 @@ function PostContainer(props) {
                         }
                     </div>
                     <div id="text">
-                        <Input text='post' user={props.user}/>
-                        <Button text='send' user={props.user} action={send}/>
+                        <Input text='post' user={props.user} chat={someone}/>
+                        <Button text='send' user={props.user} action={sendReq} chat={someone}/>
                     </div>
                 </div>
             </React.Fragment>
