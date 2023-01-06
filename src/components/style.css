@@ -125,3 +125,16 @@ input {
     align-items: center;
     gap: 10px;
 }
+.posts {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    width: fit-content;
+    background-color: #67568c;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+.owner {
+    font-weight: 500;
+}
