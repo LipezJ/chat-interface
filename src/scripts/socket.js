@@ -1,4 +1,4 @@
-import { io } from "https://cdn.socket.io/4.4.1/socket.io.esm.min.js";
+import { io } from "socket.io-client";
 import { loginSucess, joinSucess, sendSucess } from './main'
 
 const socket = io('http://127.0.0.1:4000', { transports : ['websocket'] });
