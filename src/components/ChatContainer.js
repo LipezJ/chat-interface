@@ -10,7 +10,7 @@ function ChatContainer(props) {
     <div id='chatc'>
         <div id='ownerc'>
             <div id='owner'>{props.user}</div>
-            <Button text='Log out' user={props.setUser} action={logout}/>
+            <Button text='Log out' action={logout}/>
         </div>
         <div id='createjoin'>
             <Input text='createjoini' />

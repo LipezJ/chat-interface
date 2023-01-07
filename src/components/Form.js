@@ -17,10 +17,10 @@ function Form(props) {
                   return (
                   <div className='loginf'>
                     <div className='title'>{type}</div>
-                    <Input label='true' text='user'/>
+                    <Input label='true' text='email'/>
                     <Input label='true' text='password'/>
-                    {type === 'Sing up' ? <Input label='true' text='email'/>:('')}
-                    <Button text={type} width='35%' action={login} user={setUser}/>
+                    {type === 'Sing up' && <Input label='true' text='user'/>}
+                    <Button text={type} width='35%' action={login} user={setUser} chat={type}/>
                     <button className='switch' onClick={() => setType(type === 'Login'?'Sing up':'Login')}>
                       {type === 'Login'?'Sing up':'Login'}
                     </button>

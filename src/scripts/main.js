@@ -1,24 +1,43 @@
 import { socket } from './socket'
+import { app } from './firebase/config'
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 let setUser_, updatePosts_, setSomeone_, setPosts_, addPost_
 
-function login(e, setUser){
-    let data = {}
-    data['user'] = document.querySelector('#user').value
-    data['pass'] = document.querySelector('#password').value
-    if (document.querySelector('#email') !== null) {
-        data['email'] = document.querySelector('#email').value
-    }
+const auth = getAuth(app)
+let userToken
+
+function login(e, setUser, type){
+    console.log(type)
+    let email = document.querySelector('#email').value
+    let pass = document.querySelector('#password').value
     setUser_ = setUser
-    if (!data.email) socket.emit('loginReq', data)
-    else socket.emit('singupReq', data)
+    if (type === 'Login') {
+        console.log('Login Req')
+        signInWithEmailAndPassword(auth, email, pass)
+        .then((userCredential) => {
+            console.log(userCredential.user.uid)
+            userToken = userCredential.user.uid;
+            socket.emit('login', {token: userToken})
+        }).catch((err) => console.log(err))
+    } else {
+        let user = document.querySelector('#user').value
+        createUserWithEmailAndPassword(auth, email, pass)
+        .then((userCredential) => {
+            userToken = userCredential.user.uid;
+            socket.emit('singup', {token: userToken, user: user})
+        }).catch((err) => console.log(err))
+    }
 }
 function loginSucess(data){
     setUser_(data.user)
 }
-function logout(e, setUser) {
-    socket.emit('dSocket', {})
-    setUser_(null)
+function logout(e) {
+    signOut(auth).then(() => {
+        userToken = undefined
+        socket.emit('logout', {})
+        setUser_(null)
+    })
 }
 
 function create(e, user){
