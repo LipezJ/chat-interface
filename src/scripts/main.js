@@ -17,6 +17,7 @@ function loginSucess(data){
     setUser_(data.user)
 }
 function logout(e, setUser) {
+    socket.emit('dSocket', {})
     setUser_(null)
 }
 
