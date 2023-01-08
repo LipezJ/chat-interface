@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {v4 as uuidv4} from 'uuid'
 import './style.css'
 
 import Input from './Input';
@@ -7,21 +8,18 @@ import Post from './Post';
 import ChatAlert from './ChatAlert'
 import { sendReq, ePost } from '../scripts/main'
 
-let key = 0
 
 function PostContainer(props) {
     const [posts, setPosts] = useState([])
     const [someone, setSomeone] = useState()
     const updatePost = (post) => {
-        key = 0
         const posts_ = Object.values(post).map(item => {
-            key++
-            return <Post user={item.user} post={item.post} key={key} />;
+            return <Post user={item.user} post={item.post} key={uuidv4()} />;
         });
         setPosts(posts_)
     }
     const addPost = (user, post) => {
-        setPosts(prevPosts => [...prevPosts, <Post user={user} post={post} key={Date.now()} />]);
+        setPosts(prevPosts => [...prevPosts, <Post user={user} post={post} key={uuidv4()} />]);
     }
     ePost(updatePost, setSomeone, setPosts, addPost)
     return (
