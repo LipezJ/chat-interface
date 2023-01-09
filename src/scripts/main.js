@@ -19,10 +19,9 @@ function loginSucess(data){
     setUser_(data.user)
 }
 function logout(e) {
-    signOut(auth).then(() => {
-        socket.emit('logout', {})
-        setUser_(null)
-    })
+    console.log('hola')
+    socket.emit('logout', {})
+    setUser_(null)
 }
 
 function create(e, user){
