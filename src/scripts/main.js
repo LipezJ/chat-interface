@@ -1,10 +1,7 @@
 import { socket } from './socket'
-import { app } from './firebase/config'
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 let setUser_, updatePosts_, setSomeone_, setPosts_, addPost_
 
-const auth = getAuth(app)
 let userToken
 
 function login(e, setUser, type){
@@ -13,20 +10,10 @@ function login(e, setUser, type){
     let pass = document.querySelector('#password').value
     setUser_ = setUser
     if (type === 'Login') {
-        console.log('Login Req')
-        signInWithEmailAndPassword(auth, email, pass)
-        .then((userCredential) => {
-            console.log(userCredential.user.uid)
-            userToken = userCredential.user.uid;
-            socket.emit('login', {token: userToken})
-        }).catch((err) => alert('datos incorrectos'))
+        socket.emit('login', {email: email, pass: pass})
     } else {
         let user = document.querySelector('#user').value
-        createUserWithEmailAndPassword(auth, email, pass)
-        .then((userCredential) => {
-            userToken = userCredential.user.uid;
-            socket.emit('singup', {token: userToken, user: user})
-        }).catch((err) => alert('datos incorrectos'))
+        socket.emit('singup', {email: email, pass: pass, user: user})
     }
 }
 function loginSucess(data){
