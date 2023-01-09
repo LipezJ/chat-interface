@@ -52,7 +52,7 @@ function join(e, user){
 function joinSucess(data){
     setSomeone_(document.querySelector('#createjoini').value)//pasar nombre por data
     setPosts_([])
-    updatePosts_(data.posts)
+    updatePosts_(data)
     scrollBotom()
     document.querySelector('#createjoini').value = ''
 }
