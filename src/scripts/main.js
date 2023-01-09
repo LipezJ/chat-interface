@@ -19,17 +19,18 @@ function login(e, setUser, type){
             console.log(userCredential.user.uid)
             userToken = userCredential.user.uid;
             socket.emit('login', {token: userToken})
-        }).catch((err) => console.log(err))
+        }).catch((err) => alert('datos incorrectos'))
     } else {
         let user = document.querySelector('#user').value
         createUserWithEmailAndPassword(auth, email, pass)
         .then((userCredential) => {
             userToken = userCredential.user.uid;
             socket.emit('singup', {token: userToken, user: user})
-        }).catch((err) => console.log(err))
+        }).catch((err) => alert('datos incorrectos'))
     }
 }
 function loginSucess(data){
+    console.log('a')
     setUser_(data.user)
 }
 function logout(e) {
