@@ -2,8 +2,6 @@ import { socket } from './socket'
 
 let setUser_, updatePosts_, setSomeone_, setPosts_, addPost_
 
-let userToken
-
 function login(e, setUser, type){
     console.log(type)
     let email = document.querySelector('#email').value
@@ -22,7 +20,6 @@ function loginSucess(data){
 }
 function logout(e) {
     signOut(auth).then(() => {
-        userToken = undefined
         socket.emit('logout', {})
         setUser_(null)
     })
