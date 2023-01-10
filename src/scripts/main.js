@@ -1,6 +1,6 @@
 import { socket } from './socket'
 
-let setUser_, updatePosts_, setSomeone_, setPosts_, addPost_
+let setUser_, updatePosts_, setSomeone_, setPosts_, addPost_, posts_, someone_
 
 function login(e, setUser, type){
     console.log(type)
@@ -35,6 +35,7 @@ function join(e, user){
 function joinSucess(data){
     setSomeone_(document.querySelector('#createjoini').value)//pasar nombre por data
     setPosts_([])
+    console.log("join:",data)
     updatePosts_(data)
     scrollBotom()
     document.querySelector('#createjoini').value = ''
@@ -50,11 +51,13 @@ function sendSucess(data){
     scrollBotom()
 }
 
-function ePost(funcPost, funcSomeone, funcClean, funcAddPost) {
+function ePost(funcPost, funcSetSomeone, funcClean, funcAddPost, funcPosts, funcSomeone) {
     updatePosts_ = funcPost
-    setSomeone_ = funcSomeone
+    setSomeone_ = funcSetSomeone
     setPosts_ = funcClean
     addPost_ = funcAddPost
+    posts_ = funcPosts
+    someone_ = funcSomeone
 }
 
 function enterKey(e, user, chat) {
@@ -65,5 +68,18 @@ function scrollBotom() {
         document.querySelector('#posts').scroll(0, document.querySelector('#posts').scrollHeight)
     }, 500)
 }
+function scrollPosts(e) {
+    if (e.target.scrollTop === 0) {
+        console.log('caragar', someone_)
+        socket.emit('nextPage', {chat: someone_})
+    }
+}
+function sendPage(data){
+    console.log("new:",data)
+    let newArr = {}
+    Object.entries(posts_).forEach(([k, item]) => newArr[item.key] = item.props)
+    setPosts_([])
+    updatePosts_({...data, ...newArr})
+}
 
-export {login, logout, create, join, sendSucess, sendReq, ePost, enterKey, loginSucess, joinSucess}
+export {login, logout, create, join, sendSucess, sendReq, ePost, enterKey, loginSucess, joinSucess, scrollPosts, sendPage}

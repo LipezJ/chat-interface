@@ -12,7 +12,7 @@ function Post(props) {
                 !video ?
                 <div className="post">{props.post}</div>
                 :
-                <Video link={props.post.match(/https:\/\/www.youtube.com\/watch\?v=[a-zA-Z0-9\-]+/)[0].replace(/watch\?v=/, 'embed/')}/>
+                <Video link={props.post.match(/https:\/\/www.youtube.com\/watch\?v=[a-zA-Z0-9-]+/)[0].replace(/watch\?v=/, 'embed/')}/>
             }
         </div>
     );
