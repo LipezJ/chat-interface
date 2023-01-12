@@ -1,5 +1,5 @@
 import { io } from "socket.io-client";
-import { loginSucess, joinSucess, sendSucess, sendPage } from './main'
+import { loginSucess, joinSucess, sendSucess, sendPage, updateChatsSucess } from './main'
 
 const socket = io('http://192.168.100.6:4000', { transports : ['websocket'],  });
 
@@ -8,5 +8,6 @@ socket.on('loginSucess', loginSucess)
 socket.on('joinSucess', joinSucess)
 socket.on('sendSucess', sendSucess)
 socket.on('sendPage', sendPage)
+socket.on('updateChatsSucess', updateChatsSucess)
 
 export {socket}

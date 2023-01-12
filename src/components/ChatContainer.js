@@ -3,6 +3,7 @@ import './style.css'
 
 import Button from './Button';
 import Input from './Input';
+import Chats from './Chats';
 import { logout, create, join } from '../scripts/main'
 
 function ChatContainer(props) {
@@ -12,6 +13,7 @@ function ChatContainer(props) {
             <div id='owner'>{props.user}</div>
             <Button text='Log out' action={logout}/>
         </div>
+        <Chats />
         <div id='createjoin'>
             <Input text='createjoini' />
             <div id='buttonc'>

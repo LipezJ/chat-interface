@@ -8,7 +8,6 @@ import Post from './Post';
 import ChatAlert from './ChatAlert'
 import { sendReq, ePost, scrollPosts } from '../scripts/main'
 
-
 function PostContainer(props) {
     const [posts, setPosts] = useState([])
     const [someone, setSomeone] = useState()
@@ -33,9 +32,9 @@ function PostContainer(props) {
                         { posts.length < 1 ? 
                             <ChatAlert alert='Escribe un mensaje!'/>
                             :
-                            <React.Fragment>
+                            <div id='postcont'>
                                 {posts}
-                            </React.Fragment>
+                            </div>
                         }
                     </div>
                     <div id="text">
