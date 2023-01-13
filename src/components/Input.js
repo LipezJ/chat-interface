@@ -5,9 +5,19 @@ import { enterKey } from '../scripts/main';
 
 function Input(props){
     return (
-        <div className='inputc'>
-            {props.label ? <label htmlFor='pass'>{props.text}:</label>:('')}
-            <input title="pass" type="text" id={props.text} onKeyUp={props.user ? e => enterKey(e, props.user, props.chat) : undefined}/>
+        <div className="inputc" id={(props.text + 'ic').replace(/\s/g, '')}>
+            <input
+                title="pass"
+                type="text"
+                id={(props.text + 'i').replace(/\s/g, '')}
+                onKeyUp={
+                    props.user
+                        ? (e) => enterKey(e, props.user, props.chat)
+                        : undefined
+                }
+                autoComplete="none"
+                placeholder={props.text}
+            />
         </div>
     );
 }

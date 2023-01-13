@@ -15,7 +15,7 @@ function ChatContainer(props) {
         </div>
         <Chats />
         <div id='createjoin'>
-            <Input text='createjoini' />
+            <Input text='chat' />
             <div id='buttonc'>
                 <Button text='Join' width='35%' user={props.user} action={join}/>
                 <Button text='Create' width='35%'  user={props.user} action={create}/>

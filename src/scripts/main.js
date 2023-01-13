@@ -3,13 +3,13 @@ import { socket } from './socket'
 let setUser_, updatePosts_, setSomeone_, setPosts_, addPost_, posts_, someone_, updateCards_, addCards_
 
 function login(e, setUser, type){
-    let email = document.querySelector('#email').value
-    let pass = document.querySelector('#password').value
+    let email = document.querySelector('#emaili').value
+    let pass = document.querySelector('#passwordi').value
     setUser_ = setUser
     if (type === 'Login') {
         socket.emit('login', {email: email, pass: pass})
     } else {
-        let user = document.querySelector('#user').value
+        let user = document.querySelector('#useri').value
         socket.emit('singup', {email: email, pass: pass, user: user})
     }
 }
@@ -22,11 +22,11 @@ function logout(e) {
 }
 
 function create(e){
-    let chat = document.querySelector('#createjoini').value
+    let chat = document.querySelector('#chati').value
     socket.emit('createReq', {chat: chat})
 }
 function join(e, chat_){
-    let chat = document.querySelector('#createjoini').value
+    let chat = document.querySelector('#chati').value
     socket.emit('joinReq', {chat: e.target.className === 'chatcard'? chat_ : chat})
 }
 function joinSucess(data){
@@ -38,15 +38,15 @@ function joinSucess(data){
         socket.emit('addChats', {chat: data.chat})
         addCards_(data.chat)
     }
-    document.querySelector('#createjoini').value = ''
+    document.querySelector('#chati').value = ''
 }
 function updateChatsSucess(data){
     updateCards_(data.chats)
 }
 
 function sendReq(e, user, chat) {
-    let post = document.querySelector('#post').value
-    document.querySelector('#post').value = ''
+    let post = document.querySelector('#posti').value
+    document.querySelector('#posti').value = ''
     socket.emit('sendReq', {user: user, post: post, chat: chat})
 }
 function sendSucess(data){

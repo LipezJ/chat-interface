@@ -10,7 +10,6 @@ function FormScreen(props) {
   return (
       <TypeContext.Provider value={{type, setType}}>
         <main>
-          <div id='banner'></div>
           <Form/>
         </main>
       </TypeContext.Provider>
