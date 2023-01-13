@@ -19,6 +19,13 @@ function loginSucess(data){
 function logout(e) {
     socket.emit('logout', {})
     setUser_(null)
+    updateCards_ = undefined
+    addCards_ = undefined
+    setSomeone_ = undefined
+    setPosts_ = undefined
+    addPost_ = undefined
+    posts_ = undefined
+    someone_ = undefined
 }
 
 function create(e){
@@ -30,7 +37,7 @@ function join(e, chat_){
     socket.emit('joinReq', {chat: e.target.className === 'chatcard'? chat_ : chat})
 }
 function joinSucess(data){
-    setSomeone_(data.chat)//pasar nombre por data
+    setSomeone_(data.chat)
     setPosts_([])
     updatePosts_(data.posts)
     scrollBotom()
@@ -42,6 +49,7 @@ function joinSucess(data){
 }
 function updateChatsSucess(data){
     updateCards_(data.chats)
+    console.log(data.chats)
 }
 
 function sendReq(e, user, chat) {
@@ -71,6 +79,11 @@ function eCards(funcUpdate, funcAdd) {
 function enterKey(e, user, chat) {
     if (e.key === 'Enter') sendReq(e, user, chat)
 }
+function menu (){
+    let temp = document.querySelector('#chatc').style.display
+    document.querySelector('#chatc').style.display = temp === '' || temp === 'none' ? 'block' : 'none'
+}
+
 function scrollBotom() {
     setTimeout(() => {
         document.querySelector('#posts').scroll(0, document.querySelector('#posts').scrollHeight)
@@ -88,4 +101,12 @@ function sendPage(data){
     updatePosts_({...data, ...newArr})
 }
 
-export {login, logout, create, join, sendSucess, sendReq, ePost, enterKey, loginSucess, joinSucess, scrollPosts, sendPage, eCards, updateChatsSucess}
+window.onresize = () => {
+    if (window.innerWidth > 700) {
+        document.querySelector('#chatc').style.display = 'block'
+    } else {
+        document.querySelector('#chatc').style.display = 'none'
+    }
+}
+
+export {login, logout, create, join, sendSucess, sendReq, ePost, enterKey, loginSucess, joinSucess, scrollPosts, sendPage, eCards, updateChatsSucess, menu}

@@ -3,7 +3,7 @@ import './style.css'
 
 function ChatAlert(props){
     return (
-        <div id='chatalert'>
+        <div className='chatalert'>
             <div>{props.alert}</div>
         </div>
     );

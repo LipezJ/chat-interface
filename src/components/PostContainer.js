@@ -6,7 +6,7 @@ import Input from './Input';
 import Button from './Button';
 import Post from './Post';
 import ChatAlert from './ChatAlert'
-import { sendReq, ePost, scrollPosts } from '../scripts/main'
+import { sendReq, ePost, scrollPosts, menu } from '../scripts/main'
 
 function PostContainer(props) {
     const [posts, setPosts] = useState([])
@@ -23,11 +23,19 @@ function PostContainer(props) {
     ePost(updatePost, setSomeone, setPosts, addPost, posts, someone)
     return (
         someone === undefined ?
-            <ChatAlert alert='Unete a un chat!'/>
+            <div id='bannerc'>
+                <div id="banner">
+                    <Button text='Menu' action={menu} />
+                </div>
+                <ChatAlert alert='Unete a un chat!'/>
+            </div>
             :
             <React.Fragment>
                 <div id='postc'>
-                    <div id="someone">{someone}</div>
+                    <div id="someone">
+                        {someone} 
+                        {window.innerHeight < 700 && <Button text='Menu' action={menu} />}
+                    </div>
                     <div id="posts" onScroll={scrollPosts}>
                         { posts.length < 1 ? 
                             <ChatAlert alert='Escribe un mensaje!'/>
