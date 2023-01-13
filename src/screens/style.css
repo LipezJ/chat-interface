@@ -3,15 +3,22 @@
     height: 100vh;
     display: flex;
 }
-#banner {
-    width: 50vw;
-    height: 100vh;
-    background-color: #e2daeb;
-}
 main {
     height: 100vh;
     display: flex;
+    flex-direction: column;
+    gap: 30px;
     justify-content: center;
     align-items: center;
     align-content: center;
+}
+#title {
+    font-size: xx-large;
+    font-weight: 500;
+    margin-top: -50px;
+    color: #272343;
+}
+#credits {
+    font-size: medium;
+    font-weight: 400;
 }
