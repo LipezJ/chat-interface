@@ -184,7 +184,7 @@ input {
     overflow-x: hidden;
 }
 #postcont {
-    margin: 10px 20px;
+    margin: 10px 50px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -250,6 +250,9 @@ input {
     #banner,#postc {
         width: 65vw;
     }
+    #postcont {
+        margin: 10px 30px;
+    }
 }
 @media screen and (max-width: 700px) {
     .loginf {
@@ -261,6 +264,9 @@ input {
     #Menub {
         display: block;
         margin: 0px 30px;
+    }
+    #postcont {
+        margin: 10px 20px;
     }
     #chatc {
         display: none;

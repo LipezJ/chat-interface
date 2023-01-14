@@ -49,7 +49,6 @@ function joinSucess(data){
 }
 function updateChatsSucess(data){
     updateCards_(data.chats)
-    console.log(data.chats)
 }
 
 function sendReq(e, user, chat) {
