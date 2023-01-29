@@ -86,12 +86,17 @@ function menu (){
 function scrollBotom() {
     setTimeout(() => {
         document.querySelector('#posts').scroll(0, document.querySelector('#posts').scrollHeight)
-    }, 500)
+    }, 100)
 }
 function scrollPosts(e) {
     if (e.target.scrollTop === 0) {
+        const old = e.clientHeigth
         socket.emit('nextPage', {chat: someone_})
+        e.scroll(0, e.clientHeigth, old)
     }
+}
+function scrollInit(){
+    socket.emit('nextPage', {chat: someone_})
 }
 function sendPage(data){
     let newArr = {}
@@ -108,4 +113,21 @@ window.onresize = () => {
     }
 }
 
-export {login, logout, create, join, sendSucess, sendReq, ePost, enterKey, loginSucess, joinSucess, scrollPosts, sendPage, eCards, updateChatsSucess, menu}
+export {
+    login,
+    logout,
+    create,
+    join,
+    sendSucess,
+    sendReq,
+    ePost,
+    enterKey,
+    loginSucess,
+    joinSucess,
+    scrollPosts,
+    scrollInit,
+    sendPage,
+    eCards,
+    updateChatsSucess,
+    menu,
+};

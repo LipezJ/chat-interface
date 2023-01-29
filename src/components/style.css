@@ -162,7 +162,6 @@ input {
     justify-content: center;
 }
 #postc {
-    width: 75vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -226,7 +225,7 @@ input {
     align-items: center;
 }
 #bannerc {
-    width: 100%;
+    width: 75v;
 }
 #Menub {
     display: none;

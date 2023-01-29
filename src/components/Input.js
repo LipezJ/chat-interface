@@ -8,7 +8,7 @@ function Input(props){
         <div className="inputc" id={(props.text + 'ic').replace(/\s/g, '')}>
             <input
                 title="pass"
-                type="text"
+                type={props.text === 'password' ?  props.text : 'text'}
                 id={(props.text + 'i').replace(/\s/g, '')}
                 onKeyUp={
                     props.user

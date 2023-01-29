@@ -6,7 +6,7 @@ import Input from './Input';
 import Button from './Button';
 import Post from './Post';
 import ChatAlert from './ChatAlert'
-import { sendReq, ePost, scrollPosts, menu } from '../scripts/main'
+import { sendReq, ePost, scrollPosts, scrollInit, menu } from '../scripts/main'
 
 function PostContainer(props) {
     const [posts, setPosts] = useState([])
@@ -21,6 +21,9 @@ function PostContainer(props) {
         setPosts(prevPosts => [...prevPosts, <Post user={user} post={post} key={uuidv4()} />]);
     }
     ePost(updatePost, setSomeone, setPosts, addPost, posts, someone)
+    if (posts.length < 30) {
+        scrollInit()
+    }
     return (
         someone === undefined ?
             <div id='bannerc'>
