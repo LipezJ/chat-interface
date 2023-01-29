@@ -90,13 +90,12 @@ function scrollBotom() {
 }
 function scrollPosts(e) {
     if (e.target.scrollTop === 0) {
-        const old = e.clientHeigth
+        const old = e.target.scrollHeight
         socket.emit('nextPage', {chat: someone_})
-        e.scroll(0, e.clientHeigth, old)
+        setTimeout(() => {
+            e.target.scroll(0, e.target.scrollHeight - old)
+        }, 100)
     }
-}
-function scrollInit(){
-    socket.emit('nextPage', {chat: someone_})
 }
 function sendPage(data){
     let newArr = {}
@@ -125,7 +124,6 @@ export {
     loginSucess,
     joinSucess,
     scrollPosts,
-    scrollInit,
     sendPage,
     eCards,
     updateChatsSucess,

@@ -21,9 +21,6 @@ function PostContainer(props) {
         setPosts(prevPosts => [...prevPosts, <Post user={user} post={post} key={uuidv4()} />]);
     }
     ePost(updatePost, setSomeone, setPosts, addPost, posts, someone)
-    if (posts.length < 30) {
-        scrollInit()
-    }
     return (
         someone === undefined ?
             <div id='bannerc'>
