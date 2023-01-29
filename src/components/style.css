@@ -206,10 +206,15 @@ input {
     flex-direction: row;
     gap: 5px;
     width: fit-content;
+    max-width: 80%;
     background-color: #272343;
     color: #fffffe;
     border-radius: 5px;
     padding: 5px 10px;
+}
+.vpost {
+    width: fit-content;
+    max-width: 100%;
 }
 .post {
     word-break: break-word;
@@ -225,7 +230,7 @@ input {
     align-items: center;
 }
 #bannerc {
-    width: 75v;
+    width: 75vw;
 }
 #Menub {
     display: none;

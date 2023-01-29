@@ -1,9 +1,9 @@
 import { io } from "socket.io-client";
 import { loginSucess, joinSucess, sendSucess, sendPage, updateChatsSucess } from './main'
 
-const socket = io('http://localhost:4000', { transports : ['websocket'],  });
+const socket = io('https://chat-online.fly.dev', { transports : ['websocket'],  });
 
-socket.on('alert', data => console.log("error:",data.ms))
+socket.on('alert', data => alert("error:",data.ms))
 socket.on('loginSucess', loginSucess)
 socket.on('joinSucess', joinSucess)
 socket.on('sendSucess', sendSucess)

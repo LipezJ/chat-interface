@@ -107,8 +107,6 @@ function sendPage(data){
 window.onresize = () => {
     if (window.innerWidth > 700) {
         document.querySelector('#chatc').style.display = 'block'
-    } else {
-        document.querySelector('#chatc').style.display = 'none'
     }
 }
 

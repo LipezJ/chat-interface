@@ -10,7 +10,7 @@ function Post(props) {
         <userContext.Consumer>
             {({user, setUser}) => {
                 return(
-                    <div className="posts" style={user === props.user ? {"display": "flex", "alignSelf": "end"}:{}}>
+                    <div className={"posts "+ (video && "vpost")} style={user === props.user ? {"display": "flex", "alignSelf": "end"}:{}}>
                         <div className="owner">{user !== props.user && props.user+':'}</div>
                         {    
                             !video ?
