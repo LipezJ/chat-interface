@@ -3,7 +3,7 @@ import { loginSucess, joinSucess, sendSucess, sendPage, updateChatsSucess } from
 
 const socket = io('https://chat-online.fly.dev', { transports : ['websocket'],  });
 
-socket.on('alert', data => alert("error:",data.ms))
+socket.on('alert', data => {alert("error! (datos en consola)"); console.log(data.ms)})
 socket.on('loginSucess', loginSucess)
 socket.on('joinSucess', joinSucess)
 socket.on('sendSucess', sendSucess)

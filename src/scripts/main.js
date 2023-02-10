@@ -1,6 +1,6 @@
 import { socket } from './socket'
 
-let setUser_, updatePosts_, setSomeone_, setPosts_, addPost_, posts_, someone_, updateCards_, addCards_
+let setUser_, updatePosts_, setSomeone_, setPosts_, addPost_, posts_, someone_, updateCards_, addCards_, recargePost_
 
 function login(e, setUser, type){
     let email = document.querySelector('#emaili').value
@@ -61,11 +61,12 @@ function sendSucess(data){
     scrollBotom()
 }
 
-function ePost(funcPost, funcSetSomeone, funcClean, funcAddPost, funcPosts, funcSomeone) {
+function ePost(funcPost, funcSetSomeone, funcClean, funcAddPost, recargePost, funcPosts, funcSomeone) {
     updatePosts_ = funcPost
     setSomeone_ = funcSetSomeone
     setPosts_ = funcClean
     addPost_ = funcAddPost
+    recargePost_ = recargePost
     posts_ = funcPosts
     someone_ = funcSomeone
 }
@@ -98,10 +99,7 @@ function scrollPosts(e) {
     }
 }
 function sendPage(data){
-    let newArr = {}
-    Object.entries(posts_).forEach(([k, item]) => newArr[item.key] = item.props)
-    setPosts_([])
-    updatePosts_({...data, ...newArr})
+    recargePost_(data)
 }
 
 window.onresize = () => {

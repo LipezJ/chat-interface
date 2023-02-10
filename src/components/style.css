@@ -203,7 +203,7 @@ input {
 }
 .posts {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 5px;
     width: fit-content;
     max-width: 80%;

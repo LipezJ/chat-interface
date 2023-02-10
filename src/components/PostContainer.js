@@ -20,7 +20,13 @@ function PostContainer(props) {
     const addPost = (user, post) => {
         setPosts(prevPosts => [...prevPosts, <Post user={user} post={post} key={uuidv4()} />]);
     }
-    ePost(updatePost, setSomeone, setPosts, addPost, posts, someone)
+    const recargePost = (data) => {
+        const posts_ = Object.entries(data).map(([key, item]) => {
+            return <Post user={item.user} post={item.post} key={key} />;
+        });
+        setPosts(prevPosts => [...posts_, ...prevPosts]);
+    }
+    ePost(updatePost, setSomeone, setPosts, addPost, recargePost,  posts, someone)
     return (
         someone === undefined ?
             <div id='bannerc'>
