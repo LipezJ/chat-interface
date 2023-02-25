@@ -1,6 +1,6 @@
 import { socket } from './socket'
 
-let setUser_, updatePosts_, setSomeone_, setPosts_, addPost_, posts_, someone_, updateCards_, addCards_, recargePost_
+let setUser_, updatePosts_, setSomeone_, setPosts_, addPost_, someone_, updateCards_, addCards_, recargePost_
 
 function login(e, setUser, type){
     let email = document.querySelector('#emaili').value
@@ -15,6 +15,7 @@ function login(e, setUser, type){
 }
 function loginSucess(data){
     setUser_(data.user)
+    localStorage.setItem('user', data.user)
 }
 function logout(e) {
     socket.emit('logout', {})
@@ -24,7 +25,6 @@ function logout(e) {
     setSomeone_ = undefined
     setPosts_ = undefined
     addPost_ = undefined
-    posts_ = undefined
     someone_ = undefined
 }
 
@@ -54,10 +54,10 @@ function updateChatsSucess(data){
 function sendReq(e, user, chat) {
     let post = document.querySelector('#posti').value
     document.querySelector('#posti').value = ''
-    socket.emit('sendReq', {user: user, post: post, chat: chat})
+    socket.emit('sendReq', {user: user, post: post, chat: chat, date: Date.now()})
 }
 function sendSucess(data){
-    addPost_(data.user, data.post)
+    addPost_(data.user, data.post, data.date)
     scrollBotom()
 }
 
@@ -67,7 +67,6 @@ function ePost(funcPost, funcSetSomeone, funcClean, funcAddPost, recargePost, fu
     setPosts_ = funcClean
     addPost_ = funcAddPost
     recargePost_ = recargePost
-    posts_ = funcPosts
     someone_ = funcSomeone
 }
 function eCards(funcUpdate, funcAdd) {
@@ -87,7 +86,7 @@ function menu (){
 function scrollBotom() {
     setTimeout(() => {
         document.querySelector('#posts').scroll(0, document.querySelector('#posts').scrollHeight)
-    }, 100)
+    }, 50)
 }
 function scrollPosts(e) {
     if (e.target.scrollTop === 0) {
@@ -95,7 +94,7 @@ function scrollPosts(e) {
         socket.emit('nextPage', {chat: someone_})
         setTimeout(() => {
             e.target.scroll(0, e.target.scrollHeight - old)
-        }, 100)
+        }, 50)
     }
 }
 function sendPage(data){
@@ -107,6 +106,14 @@ window.onresize = () => {
         document.querySelector('#chatc').style.display = 'block'
     }
 }
+
+function responseTo(e){
+    let t = ''
+    let target = e.target.className.indexOf('posts') >= 0 ? e.target.childNodes : e.target.parentNode.childNodes
+    if (t.match(/^::RE[(](\w+):([\w\s,.:;-_"'?¡¿!|#$%&()+{}]+)[)]/)) t = document.querySelector('#posti').value
+    if (target[0].innerHTML.length === 0) return
+    document.querySelector('#posti').value = '::RE('+ target[0].innerHTML.replace(/:/, '') +':'+target[2].innerHTML.substring(0,10)+')'+t
+} 
 
 export {
     login,
@@ -124,4 +131,5 @@ export {
     eCards,
     updateChatsSucess,
     menu,
+    responseTo
 };

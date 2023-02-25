@@ -6,23 +6,23 @@ import Input from './Input';
 import Button from './Button';
 import Post from './Post';
 import ChatAlert from './ChatAlert'
-import { sendReq, ePost, scrollPosts, scrollInit, menu } from '../scripts/main'
+import { sendReq, ePost, scrollPosts, menu } from '../scripts/main'
 
 function PostContainer(props) {
     const [posts, setPosts] = useState([])
     const [someone, setSomeone] = useState()
     const updatePost = (post) => {
         const posts_ = Object.entries(post).map(([key, item]) => {
-            return <Post user={item.user} post={item.post} key={key} />;
+            return <Post user={item.user} post={item.post} date={item.date} key={key} />;
         });
         setPosts(posts_)
     }
-    const addPost = (user, post) => {
-        setPosts(prevPosts => [...prevPosts, <Post user={user} post={post} key={uuidv4()} />]);
+    const addPost = (user, post, date) => {
+        setPosts(prevPosts => [...prevPosts, <Post user={user} post={post} date={date} key={uuidv4()} />]);
     }
     const recargePost = (data) => {
         const posts_ = Object.entries(data).map(([key, item]) => {
-            return <Post user={item.user} post={item.post} key={key} />;
+            return <Post user={item.user} post={item.post} date={item.date} key={key} />;
         });
         setPosts(prevPosts => [...posts_, ...prevPosts]);
     }

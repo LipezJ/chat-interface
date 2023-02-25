@@ -201,6 +201,11 @@ input {
     width: 70%;
     margin: 10px;
 }
+.datepost {
+    display: flex;
+    justify-content: flex-end;
+    font-size: small;
+}
 .posts {
     display: flex;
     flex-direction: column;
@@ -218,9 +223,20 @@ input {
 }
 .post {
     word-break: break-word;
+    font-size: medium;
 }
 .owner {
     font-weight: 500;
+    font-size: medium;
+}
+.response {
+    width: auto;
+    font-weight: 500;
+    font-size: small;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #bae8e8;
+    color: #272343;
 }
 .chatalert {
     width: 100%;
