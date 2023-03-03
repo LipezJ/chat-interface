@@ -4,7 +4,7 @@ import './style.css'
 function Button(props) {
     return (
         <button 
-            onClick={props.user === null ? props.action : e => props.action(e, props.user, props.chat)} 
+            onClick={props.action} 
             title={props.text} 
             type="button" 
             id={(props.text + 'b').replace(/\s/g, '')} 

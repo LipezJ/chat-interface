@@ -11,8 +11,8 @@ function Input(props){
                 type={props.text === 'password' ?  props.text : 'text'}
                 id={(props.text + 'i').replace(/\s/g, '')}
                 onKeyUp={
-                    props.user
-                        ? (e) => enterKey(e, props.user, props.chat)
+                    props.text === 'post'
+                        ? enterKey
                         : undefined
                 }
                 autoComplete="none"
