@@ -1,19 +1,14 @@
-import React, { createContext, useState } from 'react';
+import React from 'react';
 import './style.css'
 
 import Form from '../components/Form';
 
-export const TypeContext = createContext()
-
 function FormScreen(props) {
-  const [type, setType] = useState('Login')
   return (
-      <TypeContext.Provider value={{type, setType}}>
-        <main>
-          <div id='title'>Chat Online</div>
-          <Form/>
-        </main>
-      </TypeContext.Provider>
+      <main>
+        <div id='title'>Chat Online</div>
+        <Form/>
+      </main>
   );
 }
 

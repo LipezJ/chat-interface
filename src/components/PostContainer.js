@@ -6,27 +6,20 @@ import Input from './Input';
 import Button from './Button';
 import Post from './Post';
 import ChatAlert from './ChatAlert'
-import { sendReq, ePost, scrollPosts, menu } from '../scripts/main'
+import { sendReq, scrollPosts, menu } from '../scripts/main'
+import { useSelector } from 'react-redux';
 
 function PostContainer(props) {
-    const [posts, setPosts] = useState([])
-    const [someone, setSomeone] = useState()
-    const updatePost = (post) => {
-        const posts_ = Object.entries(post).map(([key, item]) => {
-            return <Post user={item.user} post={item.post} date={item.date} key={key} />;
-        });
-        setPosts(posts_)
+
+    const someone = useSelector(state => state.posts.value.someone)
+    const posts = useSelector(state => state.posts.value.posts)
+
+    const renderPosts = (posts) => {
+        return Object.entries(posts).map(([key, postData]) => {
+            return <Post user={postData.user} post={postData.post} date={postData.date} key={uuidv4()} />
+        })
     }
-    const addPost = (user, post, date) => {
-        setPosts(prevPosts => [...prevPosts, <Post user={user} post={post} date={date} key={uuidv4()} />]);
-    }
-    const recargePost = (data) => {
-        const posts_ = Object.entries(data).map(([key, item]) => {
-            return <Post user={item.user} post={item.post} date={item.date} key={key} />;
-        });
-        setPosts(prevPosts => [...posts_, ...prevPosts]);
-    }
-    ePost(updatePost, setSomeone, setPosts, addPost, recargePost,  posts, someone)
+
     return (
         someone === undefined ?
             <div id='bannerc'>
@@ -47,13 +40,13 @@ function PostContainer(props) {
                             <ChatAlert alert='Escribe un mensaje!'/>
                             :
                             <div id='postcont'>
-                                {posts}
+                                {renderPosts(posts)}
                             </div>
                         }
                     </div>
                     <div id="text">
-                        <Input text='post' user={props.user} chat={someone}/>
-                        <Button text='send' user={props.user} action={sendReq} chat={someone}/>
+                        <Input text='post' chat={someone}/>
+                        <Button text='send' action={sendReq}/>
                     </div>
                 </div>
             </React.Fragment>

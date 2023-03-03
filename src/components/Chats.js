@@ -2,22 +2,23 @@ import React, { useState } from 'react';
 import {v4 as uuidv4} from 'uuid'
 import './style.css'
 
+import { useSelector } from 'react-redux';
+
 import ChatsCard from './ChatsCard';
 import ChatAlert from './ChatAlert';
 import { eCards } from '../scripts/main';
 
+
 function Chats(props) {
-    const [chats, setChats] = useState([])
-    const updateChats = (chats) => {
-        let chats_ = chats.map((item) => {
-            return <ChatsCard chat={item} key={uuidv4()} />;
-        });
-        setChats(chats_)
+    const chats = useSelector(state => state.chats.value)
+
+    const renderChats = (chats) => {
+        console.log(chats)
+        return chats.map(({chat, key}) => {
+            return <ChatsCard chat={chat} key={key} />
+        })
     }
-    const addCard = (chat) => {
-        setChats(prevCards => [...prevCards, <ChatsCard key={uuidv4()} chat={chat} />]);
-    }
-    eCards(updateChats, addCard)
+
     return (
         <div id='chats'>
             {
@@ -25,7 +26,7 @@ function Chats(props) {
                 <ChatAlert alert='Unete a un chat' />
                 :
                 <div id='chatsc'>
-                    {chats}
+                    {renderChats(chats)}
                 </div>
             }
         </div>

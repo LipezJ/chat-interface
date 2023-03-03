@@ -1,21 +1,23 @@
-import { createContext, useState } from 'react';
+import { Fragment } from 'react';
+
+import { useSelector } from 'react-redux';
 
 import FormScreen from './screens/FormScreen';
 import ChatScreen from './screens/ChatScreen'
 
-export const userContext = createContext()
-
 function App() {
-  const [user, setUser] = useState(null)
+
+  const user = useSelector((state) => state.user.value)
+
   return (
-    <userContext.Provider value={{user, setUser}}>
-      { user === null ?
-        <FormScreen />
-        :
-        <ChatScreen />
-      }
-    </userContext.Provider>
-  );
+      <Fragment>
+        { user === undefined ?
+          <FormScreen />
+          :
+          <ChatScreen />
+        }
+      </Fragment>
+  )
 }
 
 export default App
