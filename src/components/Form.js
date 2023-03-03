@@ -6,9 +6,6 @@ import Input from './Input';
 import Button from './Button';
 import { login } from '../scripts/main'
 
-import { useDispatch } from 'react-redux';
-import { setUser } from '../scripts/app/slices/user';
-
 function Form(props) {
 
   const [type, setType] = useState('Login')

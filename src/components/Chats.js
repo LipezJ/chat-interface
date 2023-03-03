@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
-import {v4 as uuidv4} from 'uuid'
+import React from 'react';
 import './style.css'
 
 import { useSelector } from 'react-redux';
 
 import ChatsCard from './ChatsCard';
 import ChatAlert from './ChatAlert';
-import { eCards } from '../scripts/main';
 
 
 function Chats(props) {
