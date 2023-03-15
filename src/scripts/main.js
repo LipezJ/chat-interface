@@ -22,6 +22,9 @@ function loginSucess(data){
 function logout(e) {
     socket.emit('logout', {})
     dispatch(setUser(undefined))
+    dispatch(setSomeone(undefined))
+    dispatch(setPosts({}))
+    dispatch(setChats([]))
 }
 
 function create(e){
