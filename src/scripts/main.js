@@ -81,6 +81,7 @@ function scrollPosts(e) {
     }
 }
 function sendPage(data){
+    console.log(data)
     dispatch(recargePost(data))
 }
 

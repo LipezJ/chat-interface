@@ -3,7 +3,7 @@ import {v4 as uuidv4} from 'uuid'
 
 const initialState = {
     value: {
-        posts: [],
+        posts: {},
         someone: undefined
     }
 }
@@ -27,14 +27,7 @@ export const postSlice = createSlice({
             state.value.posts = {...state.value.posts, ...posts_}
         },
         recargePost: (state, action) => {
-            const posts_ = Object.entries(action.payload).map(([key, postData]) => {
-                return {[uuidv4()]: {
-                    user: postData.user,
-                    post: postData.post,
-                    date: postData.date
-                }}
-            })
-            state.value.posts = {...posts_, ...state.value.posts}
+            state.value.posts = {...action.payload, ...state.value.posts}
         }
     }
 })
