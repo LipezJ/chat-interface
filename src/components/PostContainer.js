@@ -1,5 +1,4 @@
-import React, { useCallback, useRef } from 'react'
-import {v4 as uuidv4} from 'uuid'
+import { useCallback, useRef } from 'react'
 import './style.css'
 
 import Input from './Input'
@@ -13,11 +12,19 @@ function PostContainer(props) {
 
     const someone = useSelector(state => state.posts.value.someone)
     const posts = useSelector(state => state.posts.value.posts)
-    const postRef = useRef(null)
+    const postsRef = useRef(null)
+
+    const handleScroll = () => {
+        const { scrollTop } = postsRef.current;
+        if (scrollTop < 1500) {
+            scrollPosts()
+            console.log('a')
+        }
+    }
 
     const renderPosts = useCallback((posts) => {
         return Object.entries(posts).map(([key, postData]) => {
-            return <Post user={postData.user} post={postData.post} date={postData.date} key={uuidv4()} />
+            return <Post user={postData.user} post={postData.post} date={postData.date} key={key} />
         })
     }, [])
 
@@ -40,7 +47,7 @@ function PostContainer(props) {
                     {someone} 
                     {window.innerHeight < 700 && <Button text='Menu' action={menu} />}
                 </div>
-                <div id="posts" onScroll={scrollPosts} ref={postRef}>
+                <div id="posts" onScroll={handleScroll} ref={postsRef}>
                     { posts.length < 1 ? 
                         <ChatAlert alert='Escribe un mensaje!'/>
                         :

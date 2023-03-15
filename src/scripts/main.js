@@ -71,14 +71,8 @@ function scrollBotom() {
         document.querySelector('#posts').scroll(0, document.querySelector('#posts').scrollHeight)
     }, 50)
 }
-function scrollPosts(e) {
-    if (e.target.scrollTop === 0) {
-        const old = e.target.scrollHeight
-        socket.emit('nextPage', {chat: store.getState().posts.value.someone})
-        setTimeout(() => {
-            e.target.scroll(0, e.target.scrollHeight - old)
-        }, 50)
-    }
+function scrollPosts() {
+    socket.emit('nextPage', {chat: store.getState().posts.value.someone})
 }
 function sendPage(data){
     console.log(data)
@@ -92,15 +86,12 @@ window.onresize = () => {
 }
 
 function responseTo(e){
-    let targetNodes = e.target.className.indexOf('posts') >= 0 ? e.target.childNodes : e.target.parentNode.childNodes;
-    let [firstNode, , thirdNode] = targetNodes;
-    if (firstNode.textContent.length === 0) return;
-    let t = e.target ?? '';
-    let posti = document.querySelector('#posti');
-    if (t.startsWith('::RE(')) t = posti.value;
-    let reString = `::RE(${firstNode.textContent.replace(':', '')}:${thirdNode.textContent.substring(0,10)})${t}`;
-    posti.value = reString;
-} 
+    let t = ''
+    let target = e.target.className.indexOf('posts') >= 0 ? e.target.childNodes : e.target.parentNode.childNodes
+    if (t.match(/^::RE[(](\w+):([\w\s,.:;-_"'?¡¿!|#$%&()+{}]+)[)]/)) t = document.querySelector('#posti').value
+    if (target[0].innerHTML.length === 0) return
+    document.querySelector('#posti').value = '::RE('+ target[0].innerHTML.replace(/:/, '') +':'+target[2].innerHTML.substring(0,10)+')'+t
+}
 
 export {
     login,
