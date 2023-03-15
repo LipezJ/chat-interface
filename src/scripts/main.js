@@ -61,9 +61,6 @@ function sendSucess(data){
     scrollBotom()
 }
 
-function enterKey(e) {
-    if (e.key === 'Enter') sendReq()
-}
 function menu (){
     let temp = document.querySelector('#chatc').style.display
     document.querySelector('#chatc').style.display = temp === '' || temp === 'none' ? 'block' : 'none'
@@ -94,11 +91,14 @@ window.onresize = () => {
 }
 
 function responseTo(e){
-    let t = ''
-    let target = e.target.className.indexOf('posts') >= 0 ? e.target.childNodes : e.target.parentNode.childNodes
-    if (t.match(/^::RE[(](\w+):([\w\s,.:;-_"'?¡¿!|#$%&()+{}]+)[)]/)) t = document.querySelector('#posti').value
-    if (target[0].innerHTML.length === 0) return
-    document.querySelector('#posti').value = '::RE('+ target[0].innerHTML.replace(/:/, '') +':'+target[2].innerHTML.substring(0,10)+')'+t
+    let targetNodes = e.target.className.indexOf('posts') >= 0 ? e.target.childNodes : e.target.parentNode.childNodes;
+    let [firstNode, , thirdNode] = targetNodes;
+    if (firstNode.textContent.length === 0) return;
+    let t = e.target ?? '';
+    let posti = document.querySelector('#posti');
+    if (t.startsWith('::RE(')) t = posti.value;
+    let reString = `::RE(${firstNode.textContent.replace(':', '')}:${thirdNode.textContent.substring(0,10)})${t}`;
+    posti.value = reString;
 } 
 
 export {
@@ -108,7 +108,6 @@ export {
     join,
     sendSucess,
     sendReq,
-    enterKey,
     loginSucess,
     joinSucess,
     scrollPosts,
