@@ -1,8 +1,6 @@
 import React from 'react';
 import './style.css'
 
-import { enterKey } from '../scripts/main';
-
 function Input(props){
     return (
         <div className="inputc" id={(props.text + 'ic').replace(/\s/g, '')}>
@@ -10,11 +8,8 @@ function Input(props){
                 title="pass"
                 type={props.text === 'password' ?  props.text : 'text'}
                 id={(props.text + 'i').replace(/\s/g, '')}
-                onKeyUp={
-                    props.text === 'post'
-                        ? enterKey
-                        : undefined
-                }
+                // send text
+                onChange={props.action && props.action}
                 autoComplete="none"
                 placeholder={props.text}
             />

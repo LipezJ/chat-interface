@@ -4,9 +4,9 @@ import './style.css'
 function Button(props) {
     return (
         <button 
-            onClick={props.action} 
+            onClick={props.action ? props.action : undefined} 
             title={props.text} 
-            type="button" 
+            type= {!props.type ? "button" : props.type}
             id={(props.text + 'b').replace(/\s/g, '')} 
             style={{width: props.width}}
         >

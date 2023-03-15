@@ -9,7 +9,7 @@ import { responseTo } from '../scripts/main'
 function Post(props) {
     const user = useSelector(state => state.user.value)
 
-    let video = (props.post.match(/https:\/\/www.youtube.com/) || props.post.match(/https:\/\/youtu.be/)) && props.post.match(/[=/][a-zA-Z0-9-]+$/)
+    let video = props.post.match(/https:\/\/(www\.youtube\.com|youtu\.be)\/[a-zA-Z0-9-]+$/);
     let date = new Date(props.date)
     let resReg = /^::RE[(](\w+):([\w\s,.:;-_"'?¡¿!|#$%&()+{}]+)[)]/
 

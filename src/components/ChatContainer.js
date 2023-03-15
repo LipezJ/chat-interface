@@ -14,13 +14,13 @@ function ChatContainer(props) {
             <Button text='Log out' action={logout}/>
         </div>
         <Chats />
-        <div id='createjoin'>
+        <form id='createjoin'>
             <Input text='chat' />
             <div id='buttonc'>
                 <Button text='Join' width='35%' user={props.user} action={join}/>
                 <Button text='Create' width='35%'  user={props.user} action={create}/>
             </div>
-        </div>
+        </form>
     </div>
   );
 }
