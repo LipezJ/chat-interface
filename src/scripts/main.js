@@ -87,7 +87,7 @@ function responseTo(e){
     let target = e.target.className.indexOf('posts') >= 0 ? e.target.childNodes : e.target.parentNode.childNodes
     if (t.match(/^::RE[(](\w+):([\w\s,.:;-_"'?¡¿!|#$%&()+{}]+)[)]/)) t = document.querySelector('#posti').value
     if (target[0].innerHTML.length === 0) return
-    document.querySelector('#posti').value = '::RE('+ target[0].innerHTML.replace(/:/, '') +':'+target[2].innerHTML.substring(0,10)+')'+t
+    document.querySelector('#posti').value = '::RE('+ target[0].innerText.replace(/:/, '') +':'+target[2].innerText.substring(0,10)+')'+t
 }
 
 export {

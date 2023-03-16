@@ -25,7 +25,7 @@ function Post(props) {
                         props.post.match(resReg) ?
                         (
                         <div className='response'>
-                            re {props.post.match(resReg)[1]}: {props.post.match(resReg)[2]}...
+                            {props.post.match(resReg)[1]}: {props.post.match(resReg)[2]}...
                         </div>
                         ):<div></div>
                     }
