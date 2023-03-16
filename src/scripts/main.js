@@ -27,13 +27,8 @@ function logout(e) {
     dispatch(setChats([]))
 }
 
-function create(e){
-    let chat = document.querySelector('#chati').value
-    socket.emit('createReq', {chat: chat})
-}
-function join(e, chat_){
-    let chat = document.querySelector('#chati').value
-    socket.emit('joinReq', {chat: e.target.className === 'chatcard'? chat_ : chat})
+function createJoin(chat, type){
+    socket.emit(type === 'Create' ? 'createReq' : 'joinReq', {chat: chat})
 }
 function joinSucess(data){
     dispatch(setSomeone(data.chat))
@@ -78,7 +73,6 @@ function scrollPosts() {
     socket.emit('nextPage', {chat: store.getState().posts.value.someone})
 }
 function sendPage(data){
-    console.log(data)
     dispatch(recargePost(data))
 }
 
@@ -99,8 +93,7 @@ function responseTo(e){
 export {
     login,
     logout,
-    create,
-    join,
+    createJoin,
     sendSucess,
     sendReq,
     loginSucess,

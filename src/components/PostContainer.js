@@ -18,7 +18,6 @@ function PostContainer(props) {
         const { scrollTop } = postsRef.current;
         if (scrollTop < 1500) {
             scrollPosts()
-            console.log('a')
         }
     }
 

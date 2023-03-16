@@ -1,11 +1,11 @@
 import React from 'react';
 import './style.css';
 
-import { join } from '../scripts/main';
+import { createJoin } from '../scripts/main';
 
 function ChatCard(props) {
     return (
-        <div id={props.chat} className='chatcard' onClick={(e) => join(e, props.chat)}>{props.chat}</div>
+        <div id={props.chat} className='chatcard' onClick={(e) => createJoin(props.chat, 'Join')}>{props.chat}</div>
     );
 }
 

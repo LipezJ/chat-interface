@@ -11,7 +11,6 @@ function Chats(props) {
     const chats = useSelector(state => state.chats.value)
 
     const renderChats = (chats) => {
-        console.log(chats)
         return chats.map(({chat, key}) => {
             return <ChatsCard chat={chat} key={key} />
         })
