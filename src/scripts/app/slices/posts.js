@@ -16,7 +16,9 @@ export const postSlice = createSlice({
             state.value.someone = action.payload
         },
         setPosts: (state, action) => {
-            state.value.posts = action.payload
+            const posts_ = {}
+            Object.keys(action.payload).sort().forEach(key => {posts_[key] = action.payload[key]})
+            state.value.posts = posts_
         },
         addPost: (state, action) => {
             const posts_ = {[uuidv4()]: {
@@ -27,7 +29,10 @@ export const postSlice = createSlice({
             state.value.posts = {...state.value.posts, ...posts_}
         },
         recargePost: (state, action) => {
-            state.value.posts = {...action.payload, ...state.value.posts}
+            const newPosts = {}
+            Object.keys(action.payload).sort().forEach(key => {newPosts[key] = action.payload[key]})
+            console.log('para renderizar', newPosts)
+            state.value.posts = {...newPosts, ...state.value.posts}
         }
     }
 })

@@ -38,9 +38,11 @@ function joinSucess(data){
         socket.emit('addChats', {chat: data.chat})
         dispatch(addCard(data.chat))
     }
+    console.log(data)
     document.querySelector('#chati').value = ''
 }
 function updateChatsSucess(data){
+    console.log(data)
     dispatch(setChats(data.chats))
 }
 
@@ -73,6 +75,7 @@ function scrollPosts() {
     socket.emit('nextPage', {chat: store.getState().posts.value.someone})
 }
 function sendPage(data){
+    console.log(data)
     dispatch(recargePost(data))
 }
 
