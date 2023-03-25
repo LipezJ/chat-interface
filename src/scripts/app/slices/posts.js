@@ -31,7 +31,6 @@ export const postSlice = createSlice({
         recargePost: (state, action) => {
             const newPosts = {}
             Object.keys(action.payload).sort().forEach(key => {newPosts[key] = action.payload[key]})
-            console.log('para renderizar', newPosts)
             state.value.posts = {...newPosts, ...state.value.posts}
         }
     }
